@@ -10,3 +10,14 @@
 	<cstdlib>
 	<ctime>
 
+1508008208 source:f:\game\main.cpp
+	<allegro5/allegro.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_native_dialog.h>
+	<allegro5/allegro_image.h>
+	<cstdio>
+	<cstdlib>
+	<ctime>
+

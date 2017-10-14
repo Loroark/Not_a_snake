@@ -1,0 +1,16 @@
+wersja: BETA 1.2
+-Dodano mo¿liwoœæ zmiany jêzyka na polski oraz stosowny komunikat
+
+wersja: BETA 1.1
+-Wyœwietla siê liczba zdobytych punktów
+-Wyœwietla siê najwy¿sza liczba zdobytych punktów od czasu w³¹czenia gry
+-Mo¿na zrestartowaæ grê
+-Mo¿na ustawiæ poziom trudnoœci (na razie s¹ 2)
+-Na ekranie s¹ stosowne informacje odnoœnie wszystkich funkcji w grze
+
+wersja: BETA 1.0
+-Gra "Nie wa¿" w koñcu istnieje!
+-Poruszanie siê za pomoc¹ strza³ek na klawiaturze
+-wciœnij "ESC" by zakoñczyæ grê
+-sterjesz niebiesk¹ kropk¹
+-Musisz zbieraæ czerwone kropki
