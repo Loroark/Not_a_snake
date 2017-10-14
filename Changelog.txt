@@ -1,9 +1,0 @@
-version Bet 1.1
--You can see how many points you've earned
-
-version: Beta 1.0
--The gamae "Not a snake" finally exist!
--move with arrows on your keyboard
--hit "ESC" to quit the game
--you steer blue dot
--you must collect red dots
