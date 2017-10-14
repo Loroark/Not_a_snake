@@ -1,0 +1,13 @@
+version: Beta 1.1
+-You can see how many points you've earned
+-You can see what's the highest amount of points earned since the game was started.
+-You can restart game
+-you can set difiiculty level (2 so far)
+-There are proper informations on the screen about all in-game functions
+
+version: Beta 1.0
+-The gamae "Not a snake" finally exist!
+-move with arrows on your keyboard
+-hit "ESC" to quit the game
+-you steer blue dot
+-you must collect red dots
