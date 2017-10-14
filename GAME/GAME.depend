@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1507995498 source:d:\cpp\game\main.cpp
+	<allegro5/allegro.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_native_dialog.h>
+	<cstdio>
+	<cstdlib>
+	<ctime>
+
