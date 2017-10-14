@@ -7,10 +7,12 @@
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
+#include <string>
 using namespace std;
 
 const int SZER = 1500;
 const int WYS = 1000;
+const string VERSION = "BETA 1.2";
 
 int main() {
     srand(time(NULL));
@@ -75,6 +77,7 @@ int main() {
     int dot_x = dot_r + rand()%(SZER-dot_r-dot_r+1);
     int dot_y = dot_r + rand()%(WYS-dot_r-dot_r+1);
     int multiplier = 1;
+    bool language = 0;
     double wait = 0.0015;
     /** kó³ko odbija siê jak pi³eczka
     int dx = 1;
@@ -85,20 +88,36 @@ int main() {
         al_clear_to_color(al_map_rgb_f(0.0, 1.0, 0.0)); /// malowanie t³a na kolor RGB
         al_draw_filled_circle(player_x, player_y, player_r, al_map_rgb_f(0.0, 0.0, 1.0)); ///rysowanie kó³ka
         al_draw_filled_circle(dot_x, dot_y, dot_r, al_map_rgb_f(1.0, 0.0, 0.0));
-        al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, 0, NULL, "Points: %d", points);
-        if(points > best_points){
-            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, 20, NULL, "Best this run: %d", points);
-        }else{
-            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, 20, NULL, "Best this run: %d", best_points);
+        if(language == 0){
+            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, 0, NULL, "Points: %d", points);
+            if(points > best_points){
+                al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, 20, NULL, "Best this run: %d", points);
+            }else{
+                al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, 20, NULL, "Best this run: %d", best_points);
+            }
+            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, WYS-40, NULL, "Press \"R\" to restart");
+            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, WYS-20, NULL, "Press \"ESC\" to quit");
+            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-282, 0, NULL, "Press \"1\" for easy");
+            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-293, 20, NULL, "Press \"2\" for hard");
+            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-442, 40, NULL, "WARNING! Game will restart");
+        }else if(language == 1){
+            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, 0, NULL, "Punkty: %d", points);
+            if(points > best_points){
+                al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, 20, NULL, "Najwiecej punktow: %d", points);
+            }else{
+                al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, 20, NULL, "Najwiecej punktow: %d", best_points);
+            }
+            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, WYS-40, NULL, "Wcisnij \"R\" by zrestartowac");
+            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, WYS-20, NULL, "Wcisnij \"ESC\" by zakonczyc gre");
+            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-664, 0, NULL, "Wcisnij \"1\" dla latwego poziomu trudnosci");
+            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-693, 20, NULL, "Wcisnij \"2\" dla trudnego poziomu trudnosci");
+            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-607, 40, NULL, "UWAGA! Gra zostanie zrestartowana");
         }
-        al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, WYS-40, NULL, "Press \"R\" to restart");
-        al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, WYS-20, NULL, "Press \"ESC\" to quit");
-        al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-282, 0, NULL, "Press \"1\" for easy");
-        al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-293, 20, NULL, "Press \"2\" for hard");
-        al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-442, 40, NULL, "WARNING! Game will restart");
+        al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-497, WYS-40, NULL, "Wcisnij \"P\" dla jezyka Polskiego");
+        al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-330, WYS-20, NULL, "Press \"E\" for English");
 
 
-        al_flip_display(); ///wyœwietlenie narysowanych do tej pory rzeczy
+
 
         if(((dot_x-player_x)*(dot_x-player_x) + (dot_y-player_y)*(dot_y-player_y)) <= (player_r*player_r)){
             points += multiplier;
@@ -157,6 +176,12 @@ int main() {
             multiplier = 3;
             dot_r = 5;
         }
+        if(al_key_down(&klawiatura, ALLEGRO_KEY_P)){
+            language = 1;
+        }
+        if(al_key_down(&klawiatura, ALLEGRO_KEY_E)){
+            language = 0;
+        }
         /** kó³ko odbija siê jak pi³eczka cd
         player_x += dx;
         player_y += dy;
@@ -173,6 +198,7 @@ int main() {
             dy = 1;
         }
         */
+        al_flip_display(); ///wyœwietlenie narysowanych do tej pory rzeczy
         al_rest(wait);
     } while (!al_key_down(&klawiatura, ALLEGRO_KEY_ESCAPE)); ///czy wciœniêto ESC
 
