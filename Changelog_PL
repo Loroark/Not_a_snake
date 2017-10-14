@@ -1,0 +1,13 @@
+wersja: Beta 1.1
+-Wyświetla się liczba zdobytych punktów
+-Wyświetla się najwyższa liczba zdobytych punktów od czasu włączenia gry
+-Można zrestartować grę
+-Można ustawić poziom trudności (na razie są 2)
+-Na ekranie są stosowne informacje odnośnie wszystkich funkcji w grze
+
+wersja: Beta 1.0
+-Gra "Nie waż" w końcu istnieje!
+-Poruszanie się za pomocą strzałek na klawiaturze
+-wciśnij "ESC" by zakończyć grę
+-sterjesz niebieską kropką
+-Musisz zbierać czerwone kropki
