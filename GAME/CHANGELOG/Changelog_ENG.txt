@@ -1,3 +1,11 @@
+version: BETA 1.3
+-background color changed
+-text color changed
+-changed dot color to green
+-added black border to dots
+-there are 2 bad red dot, collecting each of them grants you double minus points acquired by collecting good dot
+-added delay when changing difficulty level or restarting the game
+
 version: BETA 1.2
 -You can change language to polish now
 -Added proper information about changing language

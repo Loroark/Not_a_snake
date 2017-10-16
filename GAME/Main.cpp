@@ -10,9 +10,9 @@
 #include <string>
 using namespace std;
 
-const int SZER = 1500;
-const int WYS = 1000;
-const string VERSION = "BETA 1.2";
+const int SZER = 1280;
+const int WYS = 720;
+const string VERSION = "BETA 1.3";
 
 int main() {
     srand(time(NULL));
@@ -29,6 +29,7 @@ int main() {
         return -1;
     }
     al_init_font_addon(); /// inicjalizacja modu³u czcionek (fontów)
+    ///nie mogê sprawdziæ czy siê poprawnie doda³ modu³ font :(
     al_init_ttf_addon(); /// inicjalizacja modu³u ttf (True Type Font)
     if(!al_init_ttf_addon()){
         al_show_native_message_box(NULL, "TTF", "Ttf", "Nie udalo sie zainicjalizowac modulu ttf!", NULL, ALLEGRO_MESSAGEBOX_ERROR);
@@ -76,53 +77,82 @@ int main() {
     int dot_r = 10;
     int dot_x = dot_r + rand()%(SZER-dot_r-dot_r+1);
     int dot_y = dot_r + rand()%(WYS-dot_r-dot_r+1);
+    int bad_dot_r = 10;
+    int bad_dot_x = bad_dot_r + rand()%(SZER-bad_dot_r-bad_dot_r+1);
+    int bad_dot_y = bad_dot_r + rand()%(WYS-bad_dot_r-bad_dot_r+1);
+    int bad_dot2_x = bad_dot_r + rand()%(SZER-bad_dot_r-bad_dot_r+1);
+    int bad_dot2_y = bad_dot_r + rand()%(WYS-bad_dot_r-bad_dot_r+1);
     int multiplier = 1;
     bool language = 0;
     double wait = 0.0015;
+    //bool menu = true;
     /** kó³ko odbija siê jak pi³eczka
     int dx = 1;
     int dy = 1;
     */
 
     do {
-        al_clear_to_color(al_map_rgb_f(0.0, 1.0, 0.0)); /// malowanie t³a na kolor RGB
-        al_draw_filled_circle(player_x, player_y, player_r, al_map_rgb_f(0.0, 0.0, 1.0)); ///rysowanie kó³ka
-        al_draw_filled_circle(dot_x, dot_y, dot_r, al_map_rgb_f(1.0, 0.0, 0.0));
-        if(language == 0){
-            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, 0, NULL, "Points: %d", points);
-            if(points > best_points){
-                al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, 20, NULL, "Best this run: %d", points);
-            }else{
-                al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, 20, NULL, "Best this run: %d", best_points);
-            }
-            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, WYS-40, NULL, "Press \"R\" to restart");
-            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, WYS-20, NULL, "Press \"ESC\" to quit");
-            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-282, 0, NULL, "Press \"1\" for easy");
-            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-293, 20, NULL, "Press \"2\" for hard");
-            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-442, 40, NULL, "WARNING! Game will restart");
-        }else if(language == 1){
-            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, 0, NULL, "Punkty: %d", points);
-            if(points > best_points){
-                al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, 20, NULL, "Najwiecej punktow: %d", points);
-            }else{
-                al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, 20, NULL, "Najwiecej punktow: %d", best_points);
-            }
-            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, WYS-40, NULL, "Wcisnij \"R\" by zrestartowac");
-            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), 0, WYS-20, NULL, "Wcisnij \"ESC\" by zakonczyc gre");
-            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-664, 0, NULL, "Wcisnij \"1\" dla latwego poziomu trudnosci");
-            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-693, 20, NULL, "Wcisnij \"2\" dla trudnego poziomu trudnosci");
-            al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-607, 40, NULL, "UWAGA! Gra zostanie zrestartowana");
-        }
-        al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-497, WYS-40, NULL, "Wcisnij \"P\" dla jezyka Polskiego");
-        al_draw_textf(czcionka, al_map_rgb_f(0.0, 0.0, 0.0), SZER-330, WYS-20, NULL, "Press \"E\" for English");
+        //if(bool menu == true){
 
+        //}
+        al_clear_to_color(al_map_rgb_f(0.4, 0.7, 0.7)); /// malowanie t³a na kolor RGB
+        al_draw_filled_circle(player_x, player_y, player_r+1, al_map_rgb_f(0.0, 0.0, 1.0)); ///rysowanie kó³ka
+        al_draw_filled_circle(player_x, player_y, player_r, al_map_rgb_f(0.0, 0.0, 1.0)); ///rysowanie kó³ka
+        al_draw_filled_circle(dot_x, dot_y, dot_r+1, al_map_rgb_f(0.0, 0.0, 0.0));
+        al_draw_filled_circle(dot_x, dot_y, dot_r, al_map_rgb_f(0.0, 1.0, 0.0));
+        al_draw_filled_circle(bad_dot_x, bad_dot_y, bad_dot_r+1, al_map_rgb_f(0.0, 0.0, 0.0));
+        al_draw_filled_circle(bad_dot2_x, bad_dot2_y, bad_dot_r+1, al_map_rgb_f(0.0, 0.0, 0.0));
+        al_draw_filled_circle(bad_dot_x, bad_dot_y, bad_dot_r, al_map_rgb_f(1.0, 0.0, 0.0));
+        al_draw_filled_circle(bad_dot2_x, bad_dot2_y, bad_dot_r, al_map_rgb_f(1.0, 0.0, 0.0));
+        if(language == 0){
+            al_draw_textf(czcionka, al_map_rgb_f(1.0, 1.0, .0), 0, 0, NULL, "Points: %d", points);
+            al_draw_textf(czcionka, al_map_rgb_f(1.0, 1.0, 0.0), 0, 20, NULL, "Best this run: %d", best_points);
+            al_draw_textf(czcionka, al_map_rgb_f(1.0, 1.0, 0.0), 0, WYS-40, NULL, "Press \"R\" to restart");
+            al_draw_textf(czcionka, al_map_rgb_f(1.0, 1.0, 0.0), 0, WYS-20, NULL, "Press \"ESC\" to quit");
+            al_draw_textf(czcionka, al_map_rgb_f(1.0, 1.0, 0.0), SZER-282, 0, NULL, "Press \"1\" for easy");
+            al_draw_textf(czcionka, al_map_rgb_f(1.0, 1.0, 0.0), SZER-293, 20, NULL, "Press \"2\" for hard");
+            al_draw_textf(czcionka, al_map_rgb_f(1.0, 1.0, 0.0), SZER-442, 40, NULL, "WARNING! Game will restart");
+        }else if(language == 1){
+            al_draw_textf(czcionka, al_map_rgb_f(1.0, 1.0, 0.0), 0, 0, NULL, "Punkty: %d", points);
+            al_draw_textf(czcionka, al_map_rgb_f(1.0, 1.0, 0.0), 0, 20, NULL, "Najwiecej punktow: %d", best_points);
+            al_draw_textf(czcionka, al_map_rgb_f(1.0, 1.0, 0.0), 0, WYS-40, NULL, "Wcisnij \"R\" by zrestartowac");
+            al_draw_textf(czcionka, al_map_rgb_f(1.0, 1.0, 0.0), 0, WYS-20, NULL, "Wcisnij \"ESC\" by zakonczyc gre");
+            al_draw_textf(czcionka, al_map_rgb_f(1.0, 1.0, 0.0), SZER-664, 0, NULL, "Wcisnij \"1\" dla latwego poziomu trudnosci");
+            al_draw_textf(czcionka, al_map_rgb_f(1.0, 1.0, 0.0), SZER-693, 20, NULL, "Wcisnij \"2\" dla trudnego poziomu trudnosci");
+            al_draw_textf(czcionka, al_map_rgb_f(1.0, 1.0, 0.0), SZER-607, 40, NULL, "UWAGA! Gra zostanie zrestartowana");
+        }
+        al_draw_textf(czcionka, al_map_rgb_f(1.0, 1.0, 0.0), SZER-497, WYS-40, NULL, "Wcisnij \"P\" dla jezyka Polskiego");
+        al_draw_textf(czcionka, al_map_rgb_f(1.0, 1.0, 0.0), SZER-330, WYS-20, NULL, "Press \"E\" for English");
 
 
 
         if(((dot_x-player_x)*(dot_x-player_x) + (dot_y-player_y)*(dot_y-player_y)) <= (player_r*player_r)){
             points += multiplier;
+            if(points > best_points){
+                best_points = points;
+            }
             dot_x = dot_r + rand()%(SZER-dot_r-dot_r+1);
             dot_y = dot_r + rand()%(WYS-dot_r-dot_r+1);
+        }
+        if(((bad_dot_x-player_x)*(bad_dot_x-player_x) + (bad_dot_y-player_y)*(bad_dot_y-player_y)) <= (player_r*player_r)){
+            points -= 2*multiplier;
+            if(points > best_points){
+                best_points = points;
+            }
+            bad_dot_x = bad_dot_r + rand()%(SZER-bad_dot_r-bad_dot_r+1);
+            bad_dot_y = bad_dot_r + rand()%(WYS-bad_dot_r-bad_dot_r+1);
+            bad_dot2_x = bad_dot_r + rand()%(SZER-bad_dot_r-bad_dot_r+1);
+            bad_dot2_y = bad_dot_r + rand()%(WYS-bad_dot_r-bad_dot_r+1);
+        }
+        if(((bad_dot2_x-player_x)*(bad_dot2_x-player_x) + (bad_dot2_y-player_y)*(bad_dot2_y-player_y)) <= (player_r*player_r)){
+            points -= 2*multiplier;
+            if(points > best_points){
+                best_points = points;
+            }
+            bad_dot_x = bad_dot_r + rand()%(SZER-bad_dot_r-bad_dot_r+1);
+            bad_dot_y = bad_dot_r + rand()%(WYS-bad_dot_r-bad_dot_r+1);
+            bad_dot2_x = bad_dot_r + rand()%(SZER-bad_dot_r-bad_dot_r+1);
+            bad_dot2_y = bad_dot_r + rand()%(WYS-bad_dot_r-bad_dot_r+1);
         }
 
         al_get_keyboard_state(&klawiatura); ///sprawdzenie stanu klawiatury
@@ -143,38 +173,45 @@ int main() {
             player_y = WYS / 2;
             dot_x = dot_r + rand()%(SZER-dot_r-dot_r+1);
             dot_y = dot_r + rand()%(WYS-dot_r-dot_r+1);
-            if(points > best_points){
-                best_points = points;
-            }
+            bad_dot_x = bad_dot_r + rand()%(SZER-bad_dot_r-bad_dot_r+1);
+            bad_dot_y = bad_dot_r + rand()%(WYS-bad_dot_r-bad_dot_r+1);
+            bad_dot2_x = bad_dot_r + rand()%(SZER-bad_dot_r-bad_dot_r+1);
+            bad_dot2_y = bad_dot_r + rand()%(WYS-bad_dot_r-bad_dot_r+1);
             points = 0;
+            al_rest(0.2);
         }
         if(al_key_down(&klawiatura, ALLEGRO_KEY_1)){
             player_x = SZER / 2;
             player_y = WYS / 2;
             dot_x = dot_r + rand()%(SZER-dot_r-dot_r+1);
             dot_y = dot_r + rand()%(WYS-dot_r-dot_r+1);
-            if(points > best_points){
-                best_points = points;
-            }
+            bad_dot_x = bad_dot_r + rand()%(SZER-bad_dot_r-bad_dot_r+1);
+            bad_dot_y = bad_dot_r + rand()%(WYS-bad_dot_r-bad_dot_r+1);
+            bad_dot2_x = bad_dot_r + rand()%(SZER-bad_dot_r-bad_dot_r+1);
+            bad_dot2_y = bad_dot_r + rand()%(WYS-bad_dot_r-bad_dot_r+1);
             points = 0;
             player_r = 50;
             wait = 0.0015;
             multiplier = 1;
             dot_r = 10;
+            bad_dot_r = 10;
+            al_rest(0.2);
         }
         if(al_key_down(&klawiatura, ALLEGRO_KEY_2)){
             player_x = SZER / 2;
             player_y = WYS / 2;
             dot_x = dot_r + rand()%(SZER-dot_r-dot_r+1);
             dot_y = dot_r + rand()%(WYS-dot_r-dot_r+1);
-            if(points > best_points){
-                best_points = points;
-            }
+            bad_dot_x = bad_dot_r + rand()%(SZER-bad_dot_r-bad_dot_r+1);
+            bad_dot_y = bad_dot_r + rand()%(WYS-bad_dot_r-bad_dot_r+1);
+            bad_dot2_x = bad_dot_r + rand()%(SZER-bad_dot_r-bad_dot_r+1);
+            bad_dot2_y = bad_dot_r + rand()%(WYS-bad_dot_r-bad_dot_r+1);
             points = 0;
             player_r = 15;
             wait = 0.001;
             multiplier = 3;
             dot_r = 5;
+            al_rest(0.2);
         }
         if(al_key_down(&klawiatura, ALLEGRO_KEY_P)){
             language = 1;
@@ -204,4 +241,3 @@ int main() {
 
     al_destroy_display(okno); ///zamykanie okna
 }
-
