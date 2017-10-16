@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1508003306 source:d:\cpp\game\main.cpp
+1508167339 source:d:\cpp\game\main.cpp
 	<allegro5/allegro.h>
 	<allegro5/allegro_primitives.h>
 	<allegro5/allegro_font.h>
@@ -9,6 +9,7 @@
 	<cstdio>
 	<cstdlib>
 	<ctime>
+	<string>
 
 1508008208 source:f:\game\main.cpp
 	<allegro5/allegro.h>
