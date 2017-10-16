@@ -6,4 +6,4 @@ This game might look like snake but it's way worse XD
 
 Overall
 
-In this game you steer blue dot and collect red dot. That's all :)
+In this game you steer blue dot collect green dot and avoid red dot. That's all :)
